@@ -8,6 +8,8 @@ import it.epicenergy.model.Provincia;
 
 public interface ProvinciaRepository extends JpaRepository<Provincia, Long>{
 
-	Optional<Provincia> findByNomeLike(String string);
+	Optional<Provincia> findByNomeLike(String nome);
+
+	Optional<Provincia> findByCodiceProvincia(Integer codice);
 
 }

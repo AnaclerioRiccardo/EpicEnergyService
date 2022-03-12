@@ -1,5 +1,6 @@
 package it.epicenergy.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -28,10 +29,12 @@ public class Provincia {
 	private String sigla;
 	@Column(unique = true)
 	private String nome;
+	@Column(unique = true)
+	private Integer codiceProvincia;
 	private String regione;
-	@OneToMany(mappedBy = "provincia", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "provincia")
 	@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-	Set<Comune> comuni;
+	Set<Comune> comuni  = new HashSet<>();
 	
 	//Costruttore
 	public Provincia(String sigla, String nome, String regione) {
