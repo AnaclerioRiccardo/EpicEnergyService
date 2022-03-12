@@ -12,9 +12,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-import javax.validation.constraints.Size;
+import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
@@ -48,10 +47,11 @@ public class Cliente {
 	private String cognomeContatto;
 	private String telefonoContatto;
 	
-	@ManyToMany(fetch = FetchType.LAZY)
-	@Fetch(value = FetchMode.SUBSELECT)
-	@Size(max = 2)
-	private Set<Indirizzo> indirizzi;
+	@OneToOne
+	private Indirizzo indirizzoSedeLegale;
+	
+	@OneToOne
+	private Indirizzo indirizzoSedeOperativa;
 	
 	@OneToMany(mappedBy = "cliente", fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	@Fetch(value = FetchMode.SUBSELECT)
@@ -76,10 +76,6 @@ public class Cliente {
 				totale = totale.add(f.getImporto());
 		}
 		return fatturatoAnnuale = totale;
-	}
-	
-	public void aggiungiIndirizzo(Indirizzo indirizzo) {
-		indirizzi.add(indirizzo);
 	}
 	
 	public void aggiungiFattura(Fattura fattura) {

@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.autoconfigure.data.redis.RedisProperties.Lettuce.Cluster.Refresh;
 import org.springframework.stereotype.Component;
 
 import com.opencsv.CSVReader;
@@ -67,7 +66,7 @@ public class DataLoaderRunner implements CommandLineRunner {
 		    String[] valore;
 		    while ((values = csvReader.readNext()) != null) {
 		    	valore = values[0].split(";");		//nel file csv i valori sono separati da ;
-		    	nome=valore[1];
+		    	nome=rimpiazza(valore[1]);
 		    	p = provinciaRepo.findByNomeLike("%"+nome+"%");
 		    	if(p.isPresent()) {
 		    		//se la provincia e' presente gli setto i valori
