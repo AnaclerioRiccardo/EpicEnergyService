@@ -23,7 +23,6 @@ public class Indirizzo {
 	private String cap;	//String perche esistono cap che iniziano per 0
 	
 	@OneToOne
-	//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 	private Comune comune;
 
 }

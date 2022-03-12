@@ -1,7 +1,7 @@
 package it.epicenergy.model;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -31,9 +31,10 @@ public class Provincia {
 	@Column(unique = true)
 	private Integer codiceProvincia;
 	private String regione;
-	@OneToMany(mappedBy = "provincia")
+
 	@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-	Set<Comune> comuni  = new HashSet<>();
+	@OneToMany(mappedBy = "provincia")
+	List<Comune> comuni  = new ArrayList<>();
 	
 	//Costruttore
 	public Provincia(String sigla, String nome, String regione) {
@@ -45,5 +46,10 @@ public class Provincia {
 	//Metodi
 	public void aggiungiComune(Comune comune) {
 		comuni.add(comune);
+	}
+	
+	@Override
+	public String toString() {
+		return "Id: "+id+" Nome: "+nome+" Sigla: "+sigla+" Codice provincia: "+codiceProvincia+" Regione: "+regione+"\n";
 	}
 }

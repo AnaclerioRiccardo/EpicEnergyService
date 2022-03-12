@@ -2,7 +2,9 @@ package it.epicenergy.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -56,7 +58,7 @@ public class Cliente {
 	@OneToMany(mappedBy = "cliente", fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	@Fetch(value = FetchMode.SUBSELECT)
 	@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-	private Set<Fattura> fatture = new HashSet<>();
+	private List<Fattura> fatture = new ArrayList<>();
 	
 	//Metodi
 	/*

@@ -21,13 +21,19 @@ public class Comune {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
-	@ManyToOne
 	@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+	@ManyToOne
 	private Provincia provincia;
 	
+	//Costruttore
 	public Comune(String nome, Provincia provincia) {
 		this.nome = nome;
 		this.provincia=provincia;
+	}
+	
+	@Override
+	public String toString() {
+		return "Id: "+id+" Nome: "+nome+/*" Provincia: "+provincia.getNome()+*/"\n";
 	}
 
 }
