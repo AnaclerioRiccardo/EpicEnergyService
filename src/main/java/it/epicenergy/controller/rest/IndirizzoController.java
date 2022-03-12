@@ -63,7 +63,7 @@ public class IndirizzoController {
 		Optional<Indirizzo> indirizzo = indirizzoService.findById(id);
 		if(indirizzo.isPresent()) {
 			indirizzoService.delete(id);
-			return new ResponseEntity<>("Cancellazione avvenuta correttamente", HttpStatus.OK);
+			return new ResponseEntity<>("Indirizzo cancellato", HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>("Indirizzo non trovato", HttpStatus.NOT_FOUND);
 		}

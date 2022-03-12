@@ -1,5 +1,6 @@
 package it.epicenergy.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,8 +9,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import it.epicenergy.exception.EpicEnergyException;
+import it.epicenergy.model.Cliente;
 import it.epicenergy.model.Comune;
 import it.epicenergy.model.Indirizzo;
+import it.epicenergy.repository.ClienteRepository;
 import it.epicenergy.repository.ComuneRepository;
 import it.epicenergy.repository.IndirizzoRepository;
 
@@ -22,6 +25,9 @@ public class IndirizzoService {
 	@Autowired
 	private ComuneRepository comuneRepo;
 	
+	@Autowired
+	private ClienteRepository clienteRepo;
+	
 	//Metodi
 	public Page<Indirizzo> findAll(Pageable pageable){
 		return indirizzoRepo.findAll(pageable);
@@ -32,7 +38,21 @@ public class IndirizzoService {
 	}
 
 	public void delete(Long id) {
-		indirizzoRepo.delete(findById(id).get());
+		//Devo cancellare l'indirizzo in tutti i clienti 
+		Indirizzo ind = findById(id).get();
+		List<Cliente> clienti = clienteRepo.findAll();
+		if(!clienti.isEmpty()) {
+			for(Cliente c: clienti) {
+				if(c.getIndirizzoSedeLegale().equals(ind)) {
+					c.setIndirizzoSedeLegale(null);
+				}
+				if(c.getIndirizzoSedeOperativa().equals(ind)) {
+					c.setIndirizzoSedeOperativa(null);
+				}
+			}
+		}
+		//cancellazione effettiva dell'indirizzo
+		indirizzoRepo.delete(ind);
 	}
 
 	public Indirizzo save(Indirizzo indirizzo) {
