@@ -79,7 +79,7 @@ public class IndirizzoController {
 	}
 	
 	@PutMapping("indirizzo/{id}")
-	@Operation(summary = "modifica indirizzo", description = "del comune inserire solamente l'id (deve esistere)")
+	@Operation(summary = "Modifica indirizzo", description = "del comune inserire solamente l'id (deve esistere)")
 	@ApiResponse(responseCode = "200", description = "Indirizzo aggiornato")
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public ResponseEntity<Indirizzo> update(@RequestBody Indirizzo indirizzo, @PathVariable Long id){

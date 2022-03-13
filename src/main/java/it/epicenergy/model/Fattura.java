@@ -3,6 +3,7 @@ package it.epicenergy.model;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -29,7 +30,7 @@ public class Fattura {
 	private Integer numero;
 	private String stato;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.DETACH)
 	@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 	private Cliente cliente;
 	

@@ -55,8 +55,7 @@ public class Cliente {
 	@OneToOne
 	private Indirizzo indirizzoSedeOperativa;
 	
-	@OneToMany(mappedBy = "cliente", fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-	@Fetch(value = FetchMode.SUBSELECT)
+	@OneToMany(mappedBy = "cliente", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 	private List<Fattura> fatture = new ArrayList<>();
 	
