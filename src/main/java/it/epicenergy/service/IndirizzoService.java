@@ -61,6 +61,10 @@ public class IndirizzoService {
 		if(!comune.isPresent()) {
 			throw new EpicEnergyException("L'id del comune inserito non esiste");
 		}
+		//Controllo che il cap sia numerico
+		if(!isCapValid(indirizzo.getCap())) {
+			throw new EpicEnergyException("Il cap deve essere numerico");
+		}
 		indirizzo.setComune(comune.get());
 		return indirizzoRepo.save(indirizzo);
 	}
@@ -76,6 +80,10 @@ public class IndirizzoService {
 		if(!comune.isPresent()) {
 			throw new EpicEnergyException("L'id del comune inserito non esiste");
 		}
+		//Controllo che il cap sia numerico
+		if(!isCapValid(indirizzo.getCap())) {
+			throw new EpicEnergyException("Il cap deve essere numerico");
+		}
 		Indirizzo update = ind.get();
 		update.setCap(indirizzo.getCap());
 		update.setCivico(indirizzo.getCivico());
@@ -83,6 +91,14 @@ public class IndirizzoService {
 		update.setVia(indirizzo.getVia());
 		update.setComune(comune.get());
 		return indirizzoRepo.save(update);
+	}
+	
+	private boolean isCapValid(String cap) {
+		for (char c : cap.toCharArray()) {
+			if (!Character.isDigit(c))                
+				return false;
+		}
+		return true;
 	}
 	
 

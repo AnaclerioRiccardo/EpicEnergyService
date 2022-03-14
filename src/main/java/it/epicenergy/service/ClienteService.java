@@ -1,6 +1,7 @@
 package it.epicenergy.service;
 
-import java.util.List;
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -12,8 +13,10 @@ import org.springframework.stereotype.Service;
 
 import it.epicenergy.exception.EpicEnergyException;
 import it.epicenergy.model.Cliente;
+import it.epicenergy.model.Fattura;
 import it.epicenergy.model.Indirizzo;
 import it.epicenergy.repository.ClienteRepository;
+import it.epicenergy.repository.FatturaRepository;
 import it.epicenergy.repository.IndirizzoRepository;
 
 @Service
@@ -28,6 +31,42 @@ public class ClienteService {
 	//Metodi
 	public Page<Cliente> findAll(Pageable pageable) {
 		return clienteRepo.findAll(pageable);
+	}
+	
+	public Page<Cliente> findAllByOrderByFatturatoAnnuale(Pageable pageable){
+		return clienteRepo.findAllByOrderByFatturatoAnnuale(pageable);
+	}
+	
+	public Page<Cliente> findAllByOrderByDataInserimento(Pageable pageable){
+		return clienteRepo.findAllByOrderByDataInserimento(pageable);
+	}
+	
+	public Page<Cliente> findAllByOrderByDataUltimoContatto(Pageable pageable){
+		return clienteRepo.findAllByOrderByDataUltimoContatto(pageable);
+	}
+	
+	public Page<Cliente> findAllByOrderByIndirizzoSedeLegaleComuneProvinciaNome(Pageable pageable){
+		return clienteRepo.findAllByOrderByIndirizzoSedeLegaleComuneProvinciaNome(pageable);
+	}
+	
+	public Page<Cliente> findByFatturatoAnnualeBetween(BigDecimal val1, BigDecimal val2,Pageable pageable){
+		if(val1.compareTo(val2)==1) {
+			return clienteRepo.findByFatturatoAnnualeBetween(val2, val1, pageable);	//val1>val2
+		} else {
+			return clienteRepo.findByFatturatoAnnualeBetween(val1, val2, pageable);	//val2>val1
+		}
+	}
+	
+	public Page<Cliente> findByDataInserimento(LocalDate dataInserimento, Pageable pageable){
+		return clienteRepo.findByDataInserimento(dataInserimento, pageable);
+	}
+	
+	public Page<Cliente> findByDataUltimoContatto(LocalDate dataUltimoContatto, Pageable pageable){
+		return clienteRepo.findByDataUltimoContatto(dataUltimoContatto, pageable);
+	}
+	
+	public Page<Cliente> findByRagioneSocialeLike(String ragioneSociale, Pageable pageable){
+		return clienteRepo.findByRagioneSocialeLike("%"+ragioneSociale+"%", pageable);
 	}
 
 	public Optional<Cliente> findById(Long id) {
@@ -47,6 +86,13 @@ public class ClienteService {
 		Optional<Cliente> cEmail = clienteRepo.findByEmail(cliente.getEmail());
 		if(cEmail.isPresent()) {
 			throw new EpicEnergyException("Email gia' presente");
+		}
+		//Controllo che i numeri di telefono siano validi
+		if(!isTelValid(cliente.getTelefono())) {
+			throw new EpicEnergyException("Telefono non valido");
+		}
+		if(!isTelValid(cliente.getTelefonoContatto())) {
+			throw new EpicEnergyException("Telefono del contatto non valido");
 		}
 		//controlo che la pec sia unica
 		Optional<Cliente> cPec = clienteRepo.findByPec(cliente.getPec());
@@ -81,6 +127,13 @@ public class ClienteService {
 		if(cEmail.isPresent()) {
 			throw new EpicEnergyException("Email gia' presente");
 		}
+		//Controllo che i numeri di telefono siano validi
+		if(!isTelValid(cliente.getTelefono())) {
+			throw new EpicEnergyException("Telefono non valido");
+		}
+		if(!isTelValid(cliente.getTelefonoContatto())) {
+			throw new EpicEnergyException("Telefono del contatto non valido");
+		}
 		//controlo che la pec sia unica
 		Optional<Cliente> cPec = clienteRepo.findByPec(cliente.getPec());
 		if(cPec.isPresent()) {
@@ -103,7 +156,7 @@ public class ClienteService {
 		}
 		c.setCognomeContatto(cliente.getCognomeContatto());
 		c.setDataInserimento(cliente.getDataInserimento());
-		c.setDataUltimoContratto(cliente.getDataUltimoContratto());
+		c.setDataUltimoContatto(cliente.getDataUltimoContatto());
 		c.setEmail(cliente.getEmail());
 		c.setFatture(cliente.getFatture());
 		c.setNomeContatto(cliente.getNomeContatto());
@@ -123,6 +176,17 @@ public class ClienteService {
 		Pattern pattern = Pattern.compile(regex);
 		Matcher matcher = pattern.matcher(email);
 		return matcher.matches();
+	}
+	
+	//Controlla che il numero telefonico sia valido
+	private boolean isTelValid(String tel) { 
+		if(tel.charAt(0)!='+' && !Character.isDigit(tel.charAt(0)))
+			return false;
+		for (int i=1; i<tel.length(); i++) {                          
+			if (!Character.isDigit(tel.charAt(i)))                
+				return false;                    
+		}         
+		return true;     
 	}
 
 }

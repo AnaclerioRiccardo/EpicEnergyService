@@ -33,7 +33,7 @@ public class Comune {
 	
 	@Override
 	public String toString() {
-		return "Id: "+id+" Nome: "+nome+/*" Provincia: "+provincia.getNome()+*/"\n";
+		return "Id: "+id+" Nome: "+nome+" Provincia: "+provincia.getNome()+"\n";
 	}
 
 }

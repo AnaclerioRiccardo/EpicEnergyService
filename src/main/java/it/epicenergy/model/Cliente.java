@@ -3,9 +3,7 @@ package it.epicenergy.model;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -16,9 +14,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -40,7 +35,7 @@ public class Cliente {
 	@Column(unique = true)
 	private String email;
 	private LocalDate dataInserimento;
-	private LocalDate dataUltimoContratto;
+	private LocalDate dataUltimoContatto;
 	private BigDecimal fatturatoAnnuale = new BigDecimal("0");	//lo setto a 0 al momento della creazione
 	@Column(unique = true)
 	private String pec;

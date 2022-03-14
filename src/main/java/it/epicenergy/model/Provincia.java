@@ -34,7 +34,7 @@ public class Provincia {
 
 	@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 	@OneToMany(mappedBy = "provincia")
-	List<Comune> comuni  = new ArrayList<>();
+	List<Comune> comuni = new ArrayList<>();
 	
 	//Costruttore
 	public Provincia(String sigla, String nome, String regione) {
