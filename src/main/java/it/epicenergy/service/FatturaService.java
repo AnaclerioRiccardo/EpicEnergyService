@@ -1,5 +1,6 @@
 package it.epicenergy.service;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +28,30 @@ public class FatturaService {
 	
 	public Page<Fattura> findAll(Pageable pageable){
 		return fatturaRepo.findAll(pageable);
+	}
+	
+	public Page<Fattura> findByClienteId(Long clienteId, Pageable pageable) {
+		return fatturaRepo.findByClienteId(clienteId, pageable);
+	}
+	
+	public Page<Fattura> findByStato(String stato, Pageable pageable) {
+		return fatturaRepo.findByStato(stato, pageable);
+	}
+	
+	public Page<Fattura> findByData(LocalDate data, Pageable pageable){
+		return fatturaRepo.findByData(data, pageable);
+	}
+	
+	public Page<Fattura> findByAnno(Integer anno, Pageable pageable){
+		return fatturaRepo.findByAnno(anno, pageable);
+	}
+	
+	public Page<Fattura> findByImportoBetween(BigDecimal val1, BigDecimal val2,Pageable pageable){
+		if(val1.compareTo(val2)==1) {
+			return fatturaRepo.findByImportoBetween(val2, val1, pageable); 	//val1>val2
+		} else {
+			return fatturaRepo.findByImportoBetween(val1, val2, pageable);	//val2>val1
+		}
 	}
 	
 	public Optional<Fattura> findById(Long id){
