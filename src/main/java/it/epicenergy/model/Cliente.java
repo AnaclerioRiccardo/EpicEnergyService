@@ -50,7 +50,7 @@ public class Cliente {
 	@OneToOne
 	private Indirizzo indirizzoSedeOperativa;
 	
-	@OneToMany(mappedBy = "cliente", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "cliente", fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
 	@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 	private List<Fattura> fatture = new ArrayList<>();
 	

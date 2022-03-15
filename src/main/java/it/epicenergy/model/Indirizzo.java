@@ -25,4 +25,7 @@ public class Indirizzo {
 	@OneToOne
 	private Comune comune;
 
+	public String stampaIndirizzo() {
+		return "Via: "+via+" " + civico + " Cap: "+cap+ " Comune: "+comune.getNome()+" ("+comune.getProvincia().getSigla()+")";
+	}
 }

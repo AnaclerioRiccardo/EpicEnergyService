@@ -54,8 +54,14 @@ class TestClienteController {
 	
 	@Test
 	@WithMockUser
-	final void findByFatturatoAnnualeBetween() throws Exception {
+	final void findByFatturatoAnnualeBetweenMinMax() throws Exception {
 		this.mockMvc.perform(get("http://localhost:8080/api/cliente/fatturatoannuale/500/2000")).andDo(print()).andExpect(status().isOk());	
+	}
+	
+	@Test
+	@WithMockUser
+	final void findByFatturatoAnnualeBetweenMaxMin() throws Exception {
+		this.mockMvc.perform(get("http://localhost:8080/api/cliente/fatturatoannuale/2000/500")).andDo(print()).andExpect(status().isOk());	
 	}
 	
 	@Test

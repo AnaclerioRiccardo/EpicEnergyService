@@ -254,6 +254,16 @@ public class DataLoaderRunner implements CommandLineRunner {
 		f4.setCliente(clienteRepo.findById(4l).get());
 		f4.getCliente().aggiungiFattura(f4);
 		fatturaService.save(f4);
+		
+		Fattura f5 = new Fattura();
+		f5.setAnno(2022);
+		f5.setData(LocalDate.parse("2022-02-02"));
+		f5.setImporto(new BigDecimal("1600"));
+		f5.setNumero(5);
+		f5.setStato("non pagato");
+		f5.setCliente(clienteRepo.findById(4l).get());
+		f5.getCliente().aggiungiFattura(f5);
+		fatturaService.save(f5);
 	}
 	
 	//rimpiazzo il - con uno spazio

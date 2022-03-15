@@ -36,6 +36,16 @@ public class IndirizzoService {
 	public Optional<Indirizzo> findById(Long id){
 		return indirizzoRepo.findById(id);
 	}
+	
+	public Indirizzo findByViaAndCivicoAndCap(String via, String civico, String cap) {
+		if(!isCapValid(cap))
+			throw new EpicEnergyException("Il cap deve essere numerico");
+		Optional<Indirizzo> indirizzo = indirizzoRepo.findByViaAndCivicoAndCap(via, civico, cap);
+		if(!indirizzo.isPresent()) {
+			throw new EpicEnergyException("Indirizzo non trovato");
+		}
+		return indirizzo.get();
+	}
 
 	public void delete(Long id) {
 		//Devo cancellare l'indirizzo in tutti i clienti 

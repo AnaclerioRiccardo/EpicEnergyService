@@ -2,6 +2,7 @@ package it.epicenergy.service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -27,6 +28,9 @@ public class ClienteService {
 	
 	@Autowired
 	private IndirizzoRepository indirizzoRepo;
+	
+	@Autowired
+	private FatturaRepository fatturaRepo;
 
 	//Metodi
 	public Page<Cliente> findAll(Pageable pageable) {
@@ -122,22 +126,12 @@ public class ClienteService {
 		if(!isEmailValid(cliente.getEmail())) {
 			throw new EpicEnergyException("Email non valida");
 		}
-		//controlo che l'email sia unica
-		Optional<Cliente> cEmail = clienteRepo.findByEmail(cliente.getEmail());
-		if(cEmail.isPresent()) {
-			throw new EpicEnergyException("Email gia' presente");
-		}
 		//Controllo che i numeri di telefono siano validi
 		if(!isTelValid(cliente.getTelefono())) {
 			throw new EpicEnergyException("Telefono non valido");
 		}
 		if(!isTelValid(cliente.getTelefonoContatto())) {
 			throw new EpicEnergyException("Telefono del contatto non valido");
-		}
-		//controlo che la pec sia unica
-		Optional<Cliente> cPec = clienteRepo.findByPec(cliente.getPec());
-		if(cPec.isPresent()) {
-			throw new EpicEnergyException("Pec gia' presente");
 		}
 		//inizio a settare i campi
 		Cliente c = findById(id).get();
@@ -154,11 +148,12 @@ public class ClienteService {
 		} else {
 			throw new EpicEnergyException("Indirizzo non presente");
 		}
+		List<Fattura> fatture = fatturaRepo.findAllByClienteId(id);
 		c.setCognomeContatto(cliente.getCognomeContatto());
 		c.setDataInserimento(cliente.getDataInserimento());
 		c.setDataUltimoContatto(cliente.getDataUltimoContatto());
 		c.setEmail(cliente.getEmail());
-		c.setFatture(cliente.getFatture());
+		c.setFatture(fatture);
 		c.setNomeContatto(cliente.getNomeContatto());
 		c.setPartitaIva(cliente.getPartitaIva());
 		c.setPec(cliente.getPec());

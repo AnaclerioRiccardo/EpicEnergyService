@@ -46,13 +46,13 @@ class TestFatturaController {
 	@Test
 	@WithMockUser
 	final void testGetById() throws Exception {
-		this.mockMvc.perform(get("http://localhost:8080/api/fattura/1")).andDo(print()).andExpect(status().isOk());	
+		this.mockMvc.perform(get("http://localhost:8080/api/fattura/3")).andDo(print()).andExpect(status().isOk());	
 	}
 	
 	@Test
 	@WithMockUser
 	final void findByClienteId() throws Exception {
-		this.mockMvc.perform(get("http://localhost:8080/api/fattura/cliente/1")).andDo(print()).andExpect(status().isOk());	
+		this.mockMvc.perform(get("http://localhost:8080/api/fattura/cliente/3")).andDo(print()).andExpect(status().isOk());	
 	}
 	
 	@Test
@@ -63,20 +63,32 @@ class TestFatturaController {
 	
 	@Test
 	@WithMockUser
+	final void findByData() throws Exception {
+		this.mockMvc.perform(get("http://localhost:8080/api/fattura/data/2022-02-02")).andDo(print()).andExpect(status().isOk());	
+	}
+	
+	@Test
+	@WithMockUser
 	final void findByAnno() throws Exception {
 		this.mockMvc.perform(get("http://localhost:8080/api/fattura/anno/2022")).andDo(print()).andExpect(status().isOk());	
 	}
 	
 	@Test
 	@WithMockUser
-	final void findByImportoBetween() throws Exception {
+	final void findByImportoBetweenMinMax() throws Exception {
 		this.mockMvc.perform(get("http://localhost:8080/api/fattura/importo/500/2000")).andDo(print()).andExpect(status().isOk());	
+	}
+	
+	@Test
+	@WithMockUser
+	final void findByImportoBetweenMaxMin() throws Exception {
+		this.mockMvc.perform(get("http://localhost:8080/api/fattura/importo/2000/500")).andDo(print()).andExpect(status().isOk());	
 	}
 	
 	@Test
 	@WithMockUser(username = "admin", password = "admin", roles = "ADMIN")
 	final void testDeleteById() throws Exception {
-		this.mockMvc.perform(delete("http://localhost:8080/api/fattura/1")).andDo(print()).andExpect(status().isOk());	
+		this.mockMvc.perform(delete("http://localhost:8080/api/fattura/4")).andDo(print()).andExpect(status().isOk());	
 	}
 	
 	@Test
@@ -113,7 +125,7 @@ class TestFatturaController {
 				+ "  }\r\n"
 				+ "}";
 		
-		 MvcResult result = mockMvc.perform(MockMvcRequestBuilders.put("/api/fattura/1")
+		 MvcResult result = mockMvc.perform(MockMvcRequestBuilders.put("/api/fattura/3")
 	    			.contentType(MediaType.APPLICATION_JSON)
 	    			.content(body))
 	    			.andExpect(status().isOk()).andReturn();
