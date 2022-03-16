@@ -39,7 +39,7 @@ public class UserService {
 	public User save(User user){
 		Set<Role> ruoli = new HashSet<>();
 		//setto i ruoli
-		if(user.getRoles().isEmpty()) {
+		if(user.getRoles().isEmpty() || user.getRoles()==null) {
 			ruoli.add(roleRepository.findByRoleName(Roles.ROLE_USER).get());
 		} else {
 			for(Role r : user.getRoles()) {

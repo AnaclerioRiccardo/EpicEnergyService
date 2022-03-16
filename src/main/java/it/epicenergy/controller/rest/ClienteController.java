@@ -183,7 +183,7 @@ public class ClienteController {
 	@PutMapping("cliente/{id}")
 	@Operation(summary = "Modifica cliente", description = "Per i due indirizzi prende quelli esistenti "
 			+ "associati all'id degli indirizzi passato; il fatturato annuale viene calcolato in base alle fatture; "
-			+ "le fatture inserite vengono aggiunte in cascata")
+			+ "le fatture non posono essere aggiornate, quindi vanno cancellate dal json")
 	@ApiResponse(responseCode = "200", description = "Indirizzo aggiornato")
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public ResponseEntity<Cliente> update(@RequestBody Cliente cliente, @PathVariable Long id){

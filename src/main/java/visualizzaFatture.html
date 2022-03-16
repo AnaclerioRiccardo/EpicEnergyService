@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Elenco Fatture</title>
+</head>
+<body>
+	<header>
+		<h1>Epic Energy Services</h1>
+		<h3>Elenco Fatture</h3>
+	</header>
+	<table>
+		<thead>
+			<tr>
+				<th>Ragione Sociale</th>
+
+				<th>Aggiorna</th>
+				<th>Elimina</th>
+			</tr>
+		</thead>
+		<tbody>
+		<div th:each="f: ${fatture}">	
+			<tr>
+				<td th:text="${c.ragioneSociale}"></td>
+		
+				<td ><a th:href="@{/web/mostraFormAggiornaFattura/{id}(id=${c.id})}">Aggiorna</a></td>
+				<td><a th:href="@{/web/eliminaFattura/{id}(id=${c.id})}" onclick="return confirm('Sei sicuro di volerla eliminare?')">Elimina</a></td>
+			</tr>
+		</div>
+		</tbody>
+	</table>
+	<a href="/web/mostraFormAggiungiFattura">AggiungiCliente</a><br>
+	<a href="/web/homepage">Homepage</a>
+		
+	<footer>
+		<p>Powered by Anaclerio Riccardo &copy; 2022</p>
+	</footer>
+</body>
+</html>
