@@ -222,7 +222,7 @@ public class DataLoaderRunner implements CommandLineRunner {
 		f1.setNumero(1);
 		f1.setStato("pagato");
 		f1.setCliente(clienteRepo.findById(1l).get());
-		f1.getCliente().aggiungiFattura(f1);
+		//f1.getCliente().aggiungiFattura(f1);
 		fatturaService.save(f1);
 		
 		Fattura f2 = new Fattura();
@@ -232,7 +232,7 @@ public class DataLoaderRunner implements CommandLineRunner {
 		f2.setNumero(2);
 		f2.setStato("pagato");
 		f2.setCliente(clienteRepo.findById(1l).get());
-		f2.getCliente().aggiungiFattura(f2);
+		//f2.getCliente().aggiungiFattura(f2);
 		fatturaService.save(f2);
 		
 		Fattura f3 = new Fattura();
@@ -242,7 +242,7 @@ public class DataLoaderRunner implements CommandLineRunner {
 		f3.setNumero(3);
 		f3.setStato("non pagato");
 		f3.setCliente(clienteRepo.findById(3l).get());
-		f3.getCliente().aggiungiFattura(f3);
+		//f3.getCliente().aggiungiFattura(f3);
 		fatturaService.save(f3);
 		
 		Fattura f4 = new Fattura();
@@ -252,7 +252,7 @@ public class DataLoaderRunner implements CommandLineRunner {
 		f4.setNumero(4);
 		f4.setStato("non pagato");
 		f4.setCliente(clienteRepo.findById(4l).get());
-		f4.getCliente().aggiungiFattura(f4);
+		//f4.getCliente().aggiungiFattura(f4);
 		fatturaService.save(f4);
 		
 		Fattura f5 = new Fattura();
@@ -262,7 +262,7 @@ public class DataLoaderRunner implements CommandLineRunner {
 		f5.setNumero(5);
 		f5.setStato("non pagato");
 		f5.setCliente(clienteRepo.findById(4l).get());
-		f5.getCliente().aggiungiFattura(f5);
+		//f5.getCliente().aggiungiFattura(f5);
 		fatturaService.save(f5);
 	}
 	

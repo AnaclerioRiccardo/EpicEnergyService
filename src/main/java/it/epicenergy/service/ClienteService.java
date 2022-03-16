@@ -82,6 +82,10 @@ public class ClienteService {
 	}
 
 	public Cliente save(Cliente cliente) {
+		//Controllo che la ragione sociale sia valido
+		if(clienteRepo.findByRagioneSociale(cliente.getRagioneSociale()).isPresent()) {
+			throw new EpicEnergyException("Ragione Sociale gia' presente");
+		}
 		//Controllo che l'email sia valida
 		if(!isEmailValid(cliente.getEmail())) {
 			throw new EpicEnergyException("Email non valida");

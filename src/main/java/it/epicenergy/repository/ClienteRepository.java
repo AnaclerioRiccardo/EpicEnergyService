@@ -12,6 +12,7 @@ import it.epicenergy.model.Cliente;
 
 public interface ClienteRepository extends JpaRepository<Cliente, Long> {
 
+	Optional<Cliente> findByRagioneSociale(String ragioneSociale);
 	Optional<Cliente> findByEmail(String email);
 	Optional<Cliente> findByPec(String pec);
 	//Ordinamenti
@@ -24,5 +25,6 @@ public interface ClienteRepository extends JpaRepository<Cliente, Long> {
 	Page<Cliente> findByDataInserimento(LocalDate dataInserimento, Pageable pageable);
 	Page<Cliente> findByDataUltimoContatto(LocalDate dataUltimoContatto, Pageable pageable);
 	Page<Cliente> findByRagioneSocialeLike(String ragioneSociale, Pageable pageable);
+	
 
 }

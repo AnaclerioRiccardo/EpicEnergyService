@@ -30,6 +30,7 @@ public class Cliente {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private TipoCliente tipo;
+	@Column(unique = true)
 	private String ragioneSociale;
 	private String partitaIva;
 	@Column(unique = true)
@@ -65,18 +66,19 @@ public class Cliente {
 	public BigDecimal calcolaFatturatoAnnuale() {
 		BigDecimal totale = new BigDecimal("0");
 		if(fatture.isEmpty()) {
-			return fatturatoAnnuale = totale;
+			fatturatoAnnuale = totale;
+			return fatturatoAnnuale;
 		}
 		for(Fattura f: fatture) {
 			if(f.getAnno().equals(LocalDate.now().getYear()))
 				totale = totale.add(f.getImporto());
 		}
-		return fatturatoAnnuale = totale;
+		fatturatoAnnuale = totale;
+		return fatturatoAnnuale;
 	}
 	
 	public void aggiungiFattura(Fattura fattura) {
 		fatture.add(fattura);
-		calcolaFatturatoAnnuale();
 	}
 	
 }

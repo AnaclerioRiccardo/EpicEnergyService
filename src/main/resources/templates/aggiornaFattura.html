@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Aggiorna Fattura</title>
+</head>
+<body>
+	<header>
+		<h1>Epic Energy Services</h1>
+		<h3>Elenco Fatture</h3>
+	</header>
+	<form action="#" th:action="@{/web/aggiornaFattura/{id}(id=${fattura.id})}" th:object="${fattura}" method="POST" >
+		<table>
+			<tr><td>Numero: </td><td><input type="text" th:field="*{numero}" /></td></tr>
+			<tr><td>Data: </td><td><input type="date" th:field="*{data}" required="required"/></td></tr>
+			<tr><td>Importo: </td><td><input type="text" th:field="*{importo}" /></td></tr>
+			<tr><td>Stato: </td><td><input type="text" th:field="*{stato}" /></td></tr>
+			<tr><td>Cliente</td>
+				<td> <select th:field="*{cliente}">
+						<div th:each="c: ${clienti}">	
+							<option th:value="${c.id}" th:text="${c.ragioneSociale}" ></option>
+						</div>
+					</select>
+				</td>
+			</tr>
+		</table>
+		<p><input type="submit" value="aggiungi" /> <input type="reset" value="reset"></p>
+	</form>
+	
+	<a href="/web/homepage">Homepage</a>
+	<footer>
+		<p>Powered by Anaclerio Riccardo &copy; 2022</p>
+	</footer>
+</body>
+</html>

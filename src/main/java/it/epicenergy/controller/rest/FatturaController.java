@@ -134,7 +134,7 @@ public class FatturaController {
 	
 	@PostMapping("/fattura")
 	@Operation(summary = "Inserimento di una nuova fattura", description = "Il cliente prende quello associato all'id "
-			+ "(deve esistere)")
+			+ "(deve esistere), l'anno non va inserito, prende quello associato alla data")
 	@ApiResponse(responseCode = "200", description = "Fattura inserita")
 	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_USER')")
 	public ResponseEntity<Fattura> save(@RequestBody Fattura fattura){
@@ -144,7 +144,7 @@ public class FatturaController {
 	
 	@PutMapping("fattura/{id}")
 	@Operation(summary = "Modifica fattura", description = "Il cliente prende quello associato all'id "
-			+ "(deve esistere)")
+			+ "(deve esistere),  l'anno non va inserito, prende quello associato alla data")
 	@ApiResponse(responseCode = "200", description = "Fattura aggiornata")
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public ResponseEntity<Fattura> update(@RequestBody Fattura fattura, @PathVariable Long id){

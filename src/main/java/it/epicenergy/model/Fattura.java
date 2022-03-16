@@ -33,4 +33,8 @@ public class Fattura {
 	@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 	private Cliente cliente;
 	
+	@Override
+	public String toString(){
+		return "Id: "+id+" Numero: "+numero+" Anno: "+anno+" Data: "+data+" Importo: "+importo+" Stato: "+stato;
+	}
 }

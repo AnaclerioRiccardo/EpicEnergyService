@@ -85,12 +85,16 @@ public class FatturaService {
 		if(!cliente.isPresent()) {
 			throw new EpicEnergyException("Il cliente con id :"+fattura.getCliente().getId()+" nn esiste");
 		}
-		fattura.setCliente(cliente.get());
+		Cliente c = cliente.get();
+		fattura.setCliente(c);
+		fattura.setAnno(fattura.getData().getYear());
 		fatturaRepo.save(fattura);
+		//fatturaRepo.flush();
 		//aggiorno l'importo totale del cliente
 		if(fattura.getAnno()==LocalDate.now().getYear()) {
-			cliente.get().calcolaFatturatoAnnuale();
-			clienteRepo.save(cliente.get());
+			c.aggiungiFattura(fattura);
+			c.calcolaFatturatoAnnuale();
+			clienteRepo.save(c);
 		}
 		return fattura;
 	}
@@ -107,14 +111,14 @@ public class FatturaService {
 		}
 		Fattura f = findById(id).get();
 		f.setCliente(cliente.get());
-		f.setAnno(fattura.getAnno());
 		f.setData(fattura.getData());
+		f.setAnno(fattura.getData().getYear());
 		f.setImporto(fattura.getImporto());
 		f.setNumero(fattura.getNumero());
 		f.setStato(fattura.getStato());
 		fatturaRepo.save(f);
 		//aggiorno l'importo totale del cliente
-		if(fattura.getAnno()==LocalDate.now().getYear()) {
+		if(f.getAnno()==LocalDate.now().getYear()) {
 			cliente.get().calcolaFatturatoAnnuale();
 			clienteRepo.save(cliente.get());
 		}
