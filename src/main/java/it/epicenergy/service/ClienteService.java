@@ -102,10 +102,14 @@ public class ClienteService {
 		if(!isTelValid(cliente.getTelefonoContatto())) {
 			throw new EpicEnergyException("Telefono del contatto non valido");
 		}
-		//controlo che la pec sia unica
+		//Controlo che la pec sia unica
 		Optional<Cliente> cPec = clienteRepo.findByPec(cliente.getPec());
 		if(cPec.isPresent()) {
 			throw new EpicEnergyException("Pec gia' presente");
+		}
+		//Controllo che la pec sia valida
+		if(!isEmailValid(cliente.getPec())) {
+			throw new EpicEnergyException("Pec non valida");
 		}
 		//setto i due indirizzi
 		Optional<Indirizzo> indirizzoLegale = indirizzoRepo.findById(cliente.getIndirizzoSedeLegale().getId());
@@ -129,6 +133,10 @@ public class ClienteService {
 		//Controllo che l'email sia valida
 		if(!isEmailValid(cliente.getEmail())) {
 			throw new EpicEnergyException("Email non valida");
+		}
+		//Controllo che la Pec sia valida
+		if(!isEmailValid(cliente.getPec())) {
+			throw new EpicEnergyException("Pec non valida");
 		}
 		//Controllo che i numeri di telefono siano validi
 		if(!isTelValid(cliente.getTelefono())) {

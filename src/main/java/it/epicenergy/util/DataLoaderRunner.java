@@ -120,7 +120,7 @@ public class DataLoaderRunner implements CommandLineRunner {
 		i2.setCivico("42");
 		i2.setLocalita("Campagna");
 		i2.setVia("Grumello");
-		i2.setComune(comuneRepo.findById(2l).get());
+		i2.setComune(comuneRepo.findById(600l).get());
 		indirizzoRepo.save(i2);
 		
 		Indirizzo i3 = new Indirizzo();
@@ -128,7 +128,7 @@ public class DataLoaderRunner implements CommandLineRunner {
 		i3.setCivico("12");
 		i3.setLocalita("Citta");
 		i3.setVia("Dante");
-		i3.setComune(comuneRepo.findById(3l).get());
+		i3.setComune(comuneRepo.findById(1000l).get());
 		indirizzoRepo.save(i3);
 		
 		Indirizzo i4 = new Indirizzo();
@@ -136,7 +136,7 @@ public class DataLoaderRunner implements CommandLineRunner {
 		i4.setCivico("15");
 		i4.setLocalita("Marittima");
 		i4.setVia("Mare");
-		i4.setComune(comuneRepo.findById(2l).get());
+		i4.setComune(comuneRepo.findById(1500l).get());
 		indirizzoRepo.save(i4);
 		
 		Indirizzo i5 = new Indirizzo();
@@ -144,7 +144,7 @@ public class DataLoaderRunner implements CommandLineRunner {
 		i5.setCivico("1B");
 		i5.setLocalita("Montagna");
 		i5.setVia("Dei massi");
-		i5.setComune(comuneRepo.findById(5l).get());
+		i5.setComune(comuneRepo.findById(2000l).get());
 		indirizzoRepo.save(i5);
 	}
 	
@@ -158,7 +158,7 @@ public class DataLoaderRunner implements CommandLineRunner {
 		c1.setIndirizzoSedeLegale(indirizzoRepo.getById(1l));
 		c1.setIndirizzoSedeOperativa(indirizzoRepo.getById(1l));
 		c1.setPartitaIva("0000000000");
-		c1.setPec("Io");
+		c1.setPec("riccardo@pec.com");
 		c1.setRagioneSociale("Google");
 		c1.setTelefono("123456789");
 		c1.setTelefonoContatto("987654321");
@@ -174,7 +174,7 @@ public class DataLoaderRunner implements CommandLineRunner {
 		c2.setIndirizzoSedeLegale(indirizzoRepo.getById(2l));
 		c2.setIndirizzoSedeOperativa(indirizzoRepo.getById(3l));
 		c2.setPartitaIva("11111111111");
-		c2.setPec("MarioRossi");
+		c2.setPec("mariorossi@pec.com");
 		c2.setRagioneSociale("SuperMario");
 		c2.setTelefono("111222333");
 		c2.setTelefonoContatto("333222111");
@@ -190,7 +190,7 @@ public class DataLoaderRunner implements CommandLineRunner {
 		c3.setIndirizzoSedeLegale(indirizzoRepo.getById(4l));
 		c3.setIndirizzoSedeOperativa(indirizzoRepo.getById(4l));
 		c3.setPartitaIva("22222222222");
-		c3.setPec("LuigiVerdi");
+		c3.setPec("luigiverdi@pec.com");
 		c3.setRagioneSociale("LuigisMansion");
 		c3.setTelefono("444555666");
 		c3.setTelefonoContatto("666555444");
@@ -206,7 +206,7 @@ public class DataLoaderRunner implements CommandLineRunner {
 		c4.setIndirizzoSedeLegale(indirizzoRepo.getById(3l));
 		c4.setIndirizzoSedeOperativa(indirizzoRepo.getById(3l));
 		c4.setPartitaIva("33333333333");
-		c4.setPec("PeachRosa");
+		c4.setPec("peachrosa@pec.com");
 		c4.setRagioneSociale("CastelloPeach");
 		c4.setTelefono("777888999");
 		c4.setTelefonoContatto("666555444");
@@ -222,7 +222,6 @@ public class DataLoaderRunner implements CommandLineRunner {
 		f1.setNumero(1);
 		f1.setStato("pagato");
 		f1.setCliente(clienteRepo.findById(1l).get());
-		//f1.getCliente().aggiungiFattura(f1);
 		fatturaService.save(f1);
 		
 		Fattura f2 = new Fattura();
@@ -232,7 +231,6 @@ public class DataLoaderRunner implements CommandLineRunner {
 		f2.setNumero(2);
 		f2.setStato("pagato");
 		f2.setCliente(clienteRepo.findById(1l).get());
-		//f2.getCliente().aggiungiFattura(f2);
 		fatturaService.save(f2);
 		
 		Fattura f3 = new Fattura();
@@ -242,7 +240,6 @@ public class DataLoaderRunner implements CommandLineRunner {
 		f3.setNumero(3);
 		f3.setStato("non pagato");
 		f3.setCliente(clienteRepo.findById(3l).get());
-		//f3.getCliente().aggiungiFattura(f3);
 		fatturaService.save(f3);
 		
 		Fattura f4 = new Fattura();
@@ -252,7 +249,6 @@ public class DataLoaderRunner implements CommandLineRunner {
 		f4.setNumero(4);
 		f4.setStato("non pagato");
 		f4.setCliente(clienteRepo.findById(4l).get());
-		//f4.getCliente().aggiungiFattura(f4);
 		fatturaService.save(f4);
 		
 		Fattura f5 = new Fattura();
@@ -262,7 +258,6 @@ public class DataLoaderRunner implements CommandLineRunner {
 		f5.setNumero(5);
 		f5.setStato("non pagato");
 		f5.setCliente(clienteRepo.findById(4l).get());
-		//f5.getCliente().aggiungiFattura(f5);
 		fatturaService.save(f5);
 	}
 	

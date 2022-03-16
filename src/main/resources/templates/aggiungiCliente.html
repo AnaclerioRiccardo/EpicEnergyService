@@ -24,7 +24,7 @@
 			<tr><td>Email: </td><td><input type="email" th:field="*{email}"/></td></tr>
 			<tr><td>Data Inserimento: </td><td><input type="date" pattern="YYYY-MM-DD" th:field="*{dataInserimento}" required="required" /></td></tr>
 			<tr><td>Data Ultimo Contatto: </td><td><input type="date" pattern="YYYY-MM-DD" th:field="*{dataUltimoContatto}" required="required" /></td></tr>
-			<tr><td>Pec: </td><td><input type="text" th:field="*{pec}" /></td></tr>
+			<tr><td>Pec: </td><td><input type="email" th:field="*{pec}" /></td></tr>
 			<tr><td>telefono: </td><td><input type="tel" th:field="*{telefono}" /></td></tr>
 			<tr><td>Nome Contatto: </td><td><input type="text" th:field="*{nomeContatto}" /></td></tr>
 			<tr><td>Cognome Contatto: </td><td><input type="text" th:field="*{cognomeContatto}" /></td></tr>
@@ -33,10 +33,28 @@
 			<tr><td>Via: </td><td><input type="text" th:field="*{indirizzoSedeLegale.via}" /></td></tr>
 			<tr><td>Civico: </td><td><input type="text" th:field="*{indirizzoSedeLegale.civico}" /></td></tr>
 			<tr><td>Cap: </td><td><input type="text" th:field="*{indirizzoSedeLegale.cap}" /></td></tr>
+			<tr><td>Localita': </td><td><input type="text" th:field="*{indirizzoSedeLegale.localita}" /></td></tr>
+			<tr><td>Comune</td>
+				<td> <select th:field="*{indirizzoSedeLegale.comune}">
+						<div th:each="c: ${comuni}">	
+							<option th:value="${c.id}" th:text="${c.stampaComune()}" ></option>
+						</div>
+					</select>
+				</td>
+			</tr>
 			<tr><td>Sede Operativa<td><td></td></tr>
 			<tr><td>Via: </td><td><input type="text" th:field="*{indirizzoSedeOperativa.via}" /></td></tr>
 			<tr><td>Civico: </td><td><input type="text" th:field="*{indirizzoSedeOperativa.civico}" /></td></tr>
 			<tr><td>Cap: </td><td><input type="text" th:field="*{indirizzoSedeOperativa.cap}" /></td></tr>
+			<tr><td>Localita': </td><td><input type="text" th:field="*{indirizzoSedeOperativa.localita}" /></td></tr>
+			<tr><td>Comune</td>
+				<td> <select th:field="*{indirizzoSedeOperativa.comune}">
+						<div th:each="c: ${comuni}">	
+							<option th:value="${c.id}" th:text="${c.stampaComune()}" ></option>
+						</div>
+					</select>
+				</td>
+			</tr>
 		</table>
 		<p><input type="submit" value="aggiungi" /> <input type="reset" value="reset"></p>
 	</form>

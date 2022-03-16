@@ -37,5 +37,9 @@ public class Comune {
 	public String toString() {
 		return "Id: "+id+" Nome: "+nome;
 	}
+	
+	public String stampaComune() {
+		return nome+" "+provincia.getNome()+" "+provincia.getSigla();
+	}
 
 }

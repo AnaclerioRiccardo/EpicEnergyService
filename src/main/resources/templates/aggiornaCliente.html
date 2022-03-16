@@ -33,10 +33,28 @@
 			<tr><td>Via: </td><td><input type="text" th:field="*{indirizzoSedeLegale.via}" /></td></tr>
 			<tr><td>Civico: </td><td><input type="text" th:field="*{indirizzoSedeLegale.civico}" /></td></tr>
 			<tr><td>Cap: </td><td><input type="text" th:field="*{indirizzoSedeLegale.cap}" /></td></tr>
+			<tr><td>Localita': </td><td><input type="text" th:field="*{indirizzoSedeLegale.localita}" /></td></tr>
+			<tr><td>Comune</td>
+				<td> <select th:field="*{indirizzoSedeLegale.comune}">
+						<div th:each="c: ${comuni}">	
+							<option th:value="${c.id}" th:text="${c.stampaComune()}" ></option>
+						</div>
+					</select>
+				</td>
+			</tr>
 			<tr><td>Sede Operativa<td><td></td></tr>
 			<tr><td>Via: </td><td><input type="text" th:field="*{indirizzoSedeOperativa.via}" /></td></tr>
 			<tr><td>Civico: </td><td><input type="text" th:field="*{indirizzoSedeOperativa.civico}" /></td></tr>
 			<tr><td>Cap: </td><td><input type="text" th:field="*{indirizzoSedeOperativa.cap}" /></td></tr>
+			<tr><td>Localita': </td><td><input type="text" th:field="*{indirizzoSedeOperativa.localita}" /></td></tr>
+			<tr><td>Comune</td>
+				<td> <select th:field="*{indirizzoSedeOperativa.comune}">
+						<div th:each="c: ${comuni}">	
+							<option th:value="${c.id}" th:text="${c.stampaComune()}" ></option>
+						</div>
+					</select>
+				</td>
+			</tr>
 		</table>
 		<p><input type="submit" value="aggiorna" /> <input type="reset" value="reset"></p>
 	</form>

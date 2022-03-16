@@ -37,14 +37,11 @@ public class IndirizzoService {
 		return indirizzoRepo.findById(id);
 	}
 	
-	public Indirizzo findByViaAndCivicoAndCap(String via, String civico, String cap) {
+	public Optional<Indirizzo> findByViaAndCivicoAndCapAndLocalita(String via, String civico, String cap, String localita) {
 		if(!isCapValid(cap))
 			throw new EpicEnergyException("Il cap deve essere numerico");
-		Optional<Indirizzo> indirizzo = indirizzoRepo.findByViaAndCivicoAndCap(via, civico, cap);
-		if(!indirizzo.isPresent()) {
-			throw new EpicEnergyException("Indirizzo non trovato");
-		}
-		return indirizzo.get();
+		Optional<Indirizzo> indirizzo = indirizzoRepo.findByViaAndCivicoAndCapAndLocalita(via, civico, cap, localita);
+		return indirizzo;
 	}
 
 	public void delete(Long id) {

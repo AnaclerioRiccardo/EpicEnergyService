@@ -8,6 +8,6 @@ import it.epicenergy.model.Indirizzo;
 
 public interface IndirizzoRepository extends JpaRepository<Indirizzo, Long> {
 
-	Optional<Indirizzo> findByViaAndCivicoAndCap(String via, String civico, String cap);
+	Optional<Indirizzo> findByViaAndCivicoAndCapAndLocalita(String via, String civico, String cap, String localita);
 
 }
