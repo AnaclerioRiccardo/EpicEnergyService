@@ -46,5 +46,11 @@ class TestClienteControllerWeb {
 	final void testOrdinaProvinciaSedeLegale() throws Exception {
 		 mockMvc.perform(MockMvcRequestBuilders.get("/web/ordinaProvinciaSedeLegale")).andExpect(status().isOk());	
 	}
+	
+	@Test
+	@WithMockUser
+	final void testShowFormAggiungi() throws Exception {
+		 mockMvc.perform(MockMvcRequestBuilders.get("/web/mostraFormAggiungiCliente")).andExpect(status().isOk());	
+	}
 
 }

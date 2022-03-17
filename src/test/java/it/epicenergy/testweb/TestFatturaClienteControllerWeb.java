@@ -23,5 +23,11 @@ class TestFatturaClienteControllerWeb {
 	final void testVisualizzaFatture() throws Exception {
 		 mockMvc.perform(MockMvcRequestBuilders.get("/web/fatture")).andExpect(status().isOk());	
 	}
+	
+	@Test
+	@WithMockUser
+	final void testShowFormAggiungi() throws Exception {
+		 mockMvc.perform(MockMvcRequestBuilders.get("/web/mostraFormAggiungiFattura")).andExpect(status().isOk());	
+	}
 
 }

@@ -1,0 +1,25 @@
+header{
+	background-image: url("/img/legnoNoce.jpg");
+	background-repeat: repeat;
+	text-align: center;
+	color: white;
+	padding: 0.5%;
+}
+
+footer{
+	background-image: url("/img/legnoNoce.jpg");
+	background-repeat: repeat;
+	text-align: center;
+	color: white;
+	padding: 1%;
+}
+
+body{
+	background-image: url("/img/legnoChiaro.jpg");
+	background-repeat: repeat;
+	color: black;
+}
+
+th,td {
+	text-align: center;
+}

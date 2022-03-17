@@ -1,5 +1,6 @@
 package it.epicenergy.controller.web;
 
+import java.math.BigDecimal;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -203,5 +204,15 @@ public class ClienteControllerWeb {
 		viewClienti.addObject("clienti", clienti);
 		return viewClienti;
 	}
+	
+	/*
+	@GetMapping("/mostraFormFiltriCliente")
+	public ModelAndView showFormFiltri() {
+		ModelAndView mv = new ModelAndView("filtriCliente"); 
+		mv.addObject("val1", new BigDecimal("0"));
+		mv.addObject("val2", new BigDecimal("0"));
+		
+		return mv;
+	}*/
 
 }
