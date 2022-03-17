@@ -9,6 +9,9 @@
 	<header>
 		<h1>Epic Energy Services</h1>
 		<h3>Aggiorna Cliente</h3>
+		<div class="loggato">
+			<span sec:authentication="name">Username</span> 
+		</div>
 	</header>
 		<form action="#" th:action="@{/web/aggiornaCliente/{id}(id=${cliente.id})}" th:object="${cliente}" method="POST" >
 		<table>

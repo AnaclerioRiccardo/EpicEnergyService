@@ -23,7 +23,7 @@ class TestAutenticazione {
 	@Test
 	@WithAnonymousUser
 	final void getAllAutoryWhenUserAnonymous() throws Exception {
-		this.mockMvc.perform(get("/api/cliente")).andExpect(status().isUnauthorized());
+		this.mockMvc.perform(get("/api/cliente")).andExpect(status().isForbidden());
 	}
 	
 	@Test

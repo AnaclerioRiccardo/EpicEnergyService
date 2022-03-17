@@ -8,10 +8,17 @@
 <body>
 	<header>
 		<h1>Epic Energy Services</h1>
+		<div class="loggato">
+			<span sec:authentication="name">Username</span> 
+		</div>
 	</header>
 	
 	<a href="/web/clienti">Gestione clienti</a><br>
 	<a href="/web/fatture">Gestione fatture</a></br>
+	
+	<div> 
+		<a href="#" th:href="@{/logout}">Logout</a> <br> 
+	</div>
 	
 	<footer>
 		<p>Powered by Anaclerio Riccardo &copy; 2022</p>

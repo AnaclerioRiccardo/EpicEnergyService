@@ -9,6 +9,9 @@
 	<header>
 		<h1>Epic Energy Services</h1>
 		<h3>Registrazione</h3>
+		<div class="loggato">
+			<span sec:authentication="name">Username</span> 
+		</div>
 	</header>
 	<form action="#" th:action="@{/auth/registraUtente}" th:object="${utente}" method="POST" >
 		<table>
