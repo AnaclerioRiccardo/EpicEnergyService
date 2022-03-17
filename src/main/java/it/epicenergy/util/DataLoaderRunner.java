@@ -209,7 +209,7 @@ public class DataLoaderRunner implements CommandLineRunner {
 		c4.setPec("peachrosa@pec.com");
 		c4.setRagioneSociale("CastelloPeach");
 		c4.setTelefono("777888999");
-		c4.setTelefonoContatto("666555444");
+		c4.setTelefonoContatto("999888777");
 		c4.setTipo(TipoCliente.SRL);
 		clienteRepo.save(c4);
 	}
