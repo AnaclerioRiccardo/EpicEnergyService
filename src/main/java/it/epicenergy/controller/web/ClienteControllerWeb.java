@@ -1,7 +1,10 @@
 package it.epicenergy.controller.web;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Optional;
+
+import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import it.epicenergy.exception.EpicEnergyException;
@@ -205,14 +209,33 @@ public class ClienteControllerWeb {
 		return viewClienti;
 	}
 	
-	/*
 	@GetMapping("/mostraFormFiltriCliente")
 	public ModelAndView showFormFiltri() {
-		ModelAndView mv = new ModelAndView("filtriCliente"); 
-		mv.addObject("val1", new BigDecimal("0"));
-		mv.addObject("val2", new BigDecimal("0"));
-		
-		return mv;
-	}*/
+		return new ModelAndView("filtriCliente"); 		
+	}
+	
+	@PostMapping("/filtroFatturatoAnnuale")
+	public ModelAndView filtroFatturatoAnnuale(@RequestParam(value = "val1") BigDecimal val1, @RequestParam(value = "val2") BigDecimal val2, Pageable pageable) {
+		Page<Cliente> clienti = clienteService.findByFatturatoAnnualeBetween(val1, val2, pageable);
+		return new ModelAndView("visualizzaClienti", "clienti", clienti);
+	}
+	
+	@PostMapping("/filtroDataInserimento")
+	public ModelAndView filtroDataInserimento(@RequestParam(value = "dataInserimento") LocalDate dataInserimento, Pageable pageable) {
+		Page<Cliente> clienti = clienteService.findByDataInserimento(dataInserimento, pageable);
+		return new ModelAndView("visualizzaClienti", "clienti", clienti);
+	}
+	
+	@PostMapping("/filtroDataUltimoContatto")
+	public ModelAndView filtroDataUltimoContatto(@RequestParam(value = "dataUltimoContatto") LocalDate dataUltimoContatto, Pageable pageable) {
+		Page<Cliente> clienti = clienteService.findByDataUltimoContatto(dataUltimoContatto, pageable);
+		return new ModelAndView("visualizzaClienti", "clienti", clienti);
+	}
+	
+	@PostMapping("/filtroRagioneSociale")
+	public ModelAndView filtroRagioneSociale(@RequestParam(value = "ragioneSociale") String ragioneSociale, Pageable pageable) {
+		Page<Cliente> clienti = clienteService.findByRagioneSocialeLike(ragioneSociale, pageable);
+		return new ModelAndView("visualizzaClienti", "clienti", clienti);
+	}
 
 }

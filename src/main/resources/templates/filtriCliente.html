@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" th:href="@{/css/stile.css}"/>
+<meta charset="ISO-8859-1">
+<title>Filtri Cliente</title>
+</head>
+<body>
+	<header>
+		<h1>Epic Energy Services</h1>
+		<h3>Elenco Clienti</h3>
+		<div class="loggato">
+			<span sec:authentication="name">Username</span> 
+		</div>
+	</header>
+	
+		<fieldset>
+			<legend>Filtro per range di fatturato annuale</legend>
+			<form action="#" th:action="@{/web/filtroFatturatoAnnuale}" method="POST" >
+				<span>Fatturato annuale      </span><input type="text" th:name="val1"><span>  </span><input type="text" th:name="val2"><br>
+				<p><input type="submit" value="cerca" /> <input type="reset" value="reset"></p>
+			</form>
+		</fieldset>
+		<fieldset>
+			<legend>Filtro per data di inserimento</legend>
+			<form action="#" th:action="@{/web/filtroDataInserimento}" method="POST" >
+				<span>Data Inserimento       </span><input type="date" pattern="YYYY-MM-DD" th:name="dataInserimento"><br>
+				<p><input type="submit" value="cerca" /> <input type="reset" value="reset"></p>
+			</form>
+		</fieldset>
+		<fieldset>
+			<legend>Filtro per data ultimo contatto</legend>
+			<form action="#" th:action="@{/web/filtroDataUltimoContatto}" method="POST" >
+				<span>Data Ultimo Contatto   </span><input type="date" pattern="YYYY-MM-DD" th:name="dataUltimoContatto"><br>
+				<p><input type="submit" value="cerca" /> <input type="reset" value="reset"></p>
+			</form>
+		</fieldset>
+		<fieldset>
+			<legend>Filtro parte del nome della ragione sociale</legend>
+			<form action="#" th:action="@{/web/filtroRagioneSociale}" method="POST" >
+				<span>Ragione Sociale        </span><input type="text" th:name="ragioneSociale"><br>
+				<p><input type="submit" value="cerca" /> <input type="reset" value="reset"></p>
+			</form>
+		</fieldset>
+	
+		<a href="/web/homepage">Homepage</a>
+		
+	<footer>
+		<p>Powered by Anaclerio Riccardo &copy; 2022</p>
+	</footer>
+</body>
+</html>
