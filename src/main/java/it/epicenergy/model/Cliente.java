@@ -40,9 +40,11 @@ public class Cliente {
 	private BigDecimal fatturatoAnnuale = new BigDecimal("0");	//lo setto a 0 al momento della creazione
 	@Column(unique = true)
 	private String pec;
+	@Column(unique = true)
 	private String telefono;
 	private String nomeContatto;
 	private String cognomeContatto;
+	@Column(unique = true)
 	private String telefonoContatto;
 	
 	@OneToOne

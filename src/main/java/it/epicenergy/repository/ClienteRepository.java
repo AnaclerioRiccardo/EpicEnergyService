@@ -25,6 +25,8 @@ public interface ClienteRepository extends JpaRepository<Cliente, Long> {
 	Page<Cliente> findByDataInserimento(LocalDate dataInserimento, Pageable pageable);
 	Page<Cliente> findByDataUltimoContatto(LocalDate dataUltimoContatto, Pageable pageable);
 	Page<Cliente> findByRagioneSocialeLike(String ragioneSociale, Pageable pageable);
+	Optional<Cliente> findByTelefono(String telefono);
+	Optional<Cliente> findByTelefonoContatto(String telefono);
 	
 
 }

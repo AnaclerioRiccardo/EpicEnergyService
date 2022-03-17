@@ -7,6 +7,8 @@ import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.persistence.Column;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -99,8 +101,16 @@ public class ClienteService {
 		if(!isTelValid(cliente.getTelefono())) {
 			throw new EpicEnergyException("Telefono non valido");
 		}
+		Optional<Cliente> cTelefono = clienteRepo.findByTelefono(cliente.getTelefono());
+		if(cTelefono.isPresent()) {
+			throw new EpicEnergyException("Telefono gia' presente");
+		}
 		if(!isTelValid(cliente.getTelefonoContatto())) {
 			throw new EpicEnergyException("Telefono del contatto non valido");
+		}
+		Optional<Cliente> cTelefonoContatto = clienteRepo.findByTelefonoContatto(cliente.getTelefonoContatto());
+		if(cTelefonoContatto.isPresent()) {
+			throw new EpicEnergyException("Telefono contatto gia' presente");
 		}
 		//Controlo che la pec sia unica
 		Optional<Cliente> cPec = clienteRepo.findByPec(cliente.getPec());
@@ -134,16 +144,40 @@ public class ClienteService {
 		if(!isEmailValid(cliente.getEmail())) {
 			throw new EpicEnergyException("Email non valida");
 		}
+		Optional<Cliente> cli = clienteRepo.findByEmail(cliente.getEmail());
+		if(cli.isPresent()) {
+			if(cli.get().getId()!=id) {
+				throw new EpicEnergyException("Email gia' presente");
+			}
+		}
 		//Controllo che la Pec sia valida
 		if(!isEmailValid(cliente.getPec())) {
 			throw new EpicEnergyException("Pec non valida");
+		}
+		Optional<Cliente> cli2 = clienteRepo.findByPec(cliente.getPec());
+		if(cli2.isPresent()) {
+			if(cli2.get().getId()!=id) {
+				throw new EpicEnergyException("Pec gia' presente");
+			}
 		}
 		//Controllo che i numeri di telefono siano validi
 		if(!isTelValid(cliente.getTelefono())) {
 			throw new EpicEnergyException("Telefono non valido");
 		}
+		Optional<Cliente> cli3 = clienteRepo.findByTelefono(cliente.getTelefono());
+		if(cli3.isPresent()) {
+			if(cli3.get().getId()!=id) {
+				throw new EpicEnergyException("Telefono gia' presente");
+			}
+		}
 		if(!isTelValid(cliente.getTelefonoContatto())) {
 			throw new EpicEnergyException("Telefono del contatto non valido");
+		}
+		Optional<Cliente> cli4 = clienteRepo.findByTelefonoContatto(cliente.getTelefono());
+		if(cli4.isPresent()) {
+			if(cli4.get().getId()!=id) {
+				throw new EpicEnergyException("Telefono gia' presente");
+			}
 		}
 		//inizio a settare i campi
 		Cliente c = findById(id).get();
