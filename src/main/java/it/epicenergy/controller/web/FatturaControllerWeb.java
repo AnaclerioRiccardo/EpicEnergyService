@@ -1,5 +1,7 @@
 package it.epicenergy.controller.web;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import it.epicenergy.exception.EpicEnergyException;
@@ -75,6 +78,41 @@ public class FatturaControllerWeb {
 		} catch(EpicEnergyException ex) {
 			return new ModelAndView("errore", "msg", ex.getMessage());
 		}
+	}
+	
+	@GetMapping("/mostraFormFiltriFattura")
+	public ModelAndView showFormFiltri() {
+		return new ModelAndView("filtriFattura"); 		
+	}
+	
+	@PostMapping("/filtroFatturaByClienteRagioneSocialeLike")
+	public ModelAndView filtroFatturaByClienteRagioneSocialeLike(@RequestParam(value = "ragioneSociale") String ragioneSociale, Pageable pageable) {
+		Page<Fattura> fatture = fatturaService.findByClienteRagioneSocialeLike(ragioneSociale, pageable);
+		return new ModelAndView("visualizzaFatture", "fatture", fatture);
+	}
+	
+	@PostMapping("/filtroFatturaStato")
+	public ModelAndView filtroFatturaStato(@RequestParam(value = "stato") String stato, Pageable pageable) {
+		Page<Fattura> fatture = fatturaService.findByStato(stato, pageable);
+		return new ModelAndView("visualizzaFatture", "fatture", fatture);
+	}
+	
+	@PostMapping("/filtroFatturaData")
+	public ModelAndView filtroFatturaData(@RequestParam(value = "data") LocalDate data, Pageable pageable) {
+		Page<Fattura> fatture = fatturaService.findByData(data, pageable);
+		return new ModelAndView("visualizzaFatture", "fatture", fatture);
+	}
+	
+	@PostMapping("/filtroFatturaAnno")
+	public ModelAndView filtroFatturaAnno(@RequestParam(value = "anno") Integer anno, Pageable pageable) {
+		Page<Fattura> fatture = fatturaService.findByAnno(anno, pageable);
+		return new ModelAndView("visualizzaFatture", "fatture", fatture);
+	}
+	
+	@PostMapping("/filtroFatturaImporto")
+	public ModelAndView filtroFatturaImporto(@RequestParam(value = "val1") BigDecimal val1, @RequestParam(value = "val2") BigDecimal val2, Pageable pageable) {
+		Page<Fattura> fatture = fatturaService.findByImportoBetween(val1, val2, pageable);
+		return new ModelAndView("visualizzaFatture", "fatture", fatture);
 	}
 
 }

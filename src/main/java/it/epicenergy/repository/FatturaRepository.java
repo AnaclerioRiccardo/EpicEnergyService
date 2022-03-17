@@ -19,6 +19,7 @@ public interface FatturaRepository extends JpaRepository<Fattura, Long> {
 	Page<Fattura> findByImportoBetween(BigDecimal val1, BigDecimal val2,Pageable pageable);
 	
 	List<Fattura> findAllByClienteId(Long id);
+	Page<Fattura> findByClienteRagioneSocialeLike(String ragioneSociale, Pageable pageable);
 	
 
 }

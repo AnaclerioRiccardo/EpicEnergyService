@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" th:href="@{/css/stile.css}"/>
+<meta charset="ISO-8859-1">
+<title>Filtri Fattura</title>
+</head>
+<body>
+	<header>
+		<h1>Epic Energy Services</h1>
+		<h3>Filtri Fattura</h3>
+		<div class="loggato">
+			<span sec:authentication="name">Username</span> 
+		</div>
+	</header>
+	
+		<fieldset>
+			<legend>Filtro per parte del nome cliente</legend>
+			<form action="#" th:action="@{/web/filtroFatturaByClienteRagioneSocialeLike}" method="POST" >
+				<span>Nome Cliente    </span><input type="text" th:name="ragioneSociale"><br>
+				<p><input type="submit" value="cerca" /> <input type="reset" value="reset"></p>
+			</form>
+		</fieldset>
+		<fieldset>
+			<legend>Filtro per stato</legend>
+			<form action="#" th:action="@{/web/filtroFatturaStato}" method="POST" >
+				<span>Stato fattura   </span><input type="text" th:name="stato"><br>
+				<p><input type="submit" value="cerca" /> <input type="reset" value="reset"></p>
+			</form>
+		</fieldset>
+		<fieldset>
+			<legend>Filtro per data</legend>
+			<form action="#" th:action="@{/web/filtroFatturaData}" method="POST" >
+				<span>Data            </span><input type="date" pattern="YYYY-MM-DD" th:name="data"><br>
+				<p><input type="submit" value="cerca" /> <input type="reset" value="reset"></p>
+			</form>
+		</fieldset>
+		<fieldset>
+			<legend>Filtro per anno</legend>
+			<form action="#" th:action="@{/web/filtroFatturaAnno}" method="POST" >
+				<span>Anno            </span><input type="number" th:name="anno"><br>
+				<p><input type="submit" value="cerca" /> <input type="reset" value="reset"></p>
+			</form>
+		</fieldset>
+		<fieldset>
+			<legend>Filtro per range di importi</legend>
+			<form action="#" th:action="@{/web/filtroFatturaImporto}" method="POST" >
+				<span>Importi         </span><input type="text" th:name="val1"><span>  </span><input type="text" th:name="val2"><br>
+				<p><input type="submit" value="cerca" /> <input type="reset" value="reset"></p>
+			</form>
+		</fieldset>
+	
+		<a href="/web/homepage">Homepage</a>
+		
+	<footer>
+		<p>Powered by Anaclerio Riccardo &copy; 2022</p>
+	</footer>
+</body>
+</html>
