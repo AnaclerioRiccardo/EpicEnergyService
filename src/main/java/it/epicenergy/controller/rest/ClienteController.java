@@ -174,10 +174,10 @@ public class ClienteController {
 			+ "associati all'id passato; il fatturato annuale viene calcolato in base alle fatture; "
 			+ "le fatture inserite vengono aggiunte in cascata")
 	@ApiResponse(responseCode = "200", description = "cliente inserito")
-	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_USER')")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public ResponseEntity<Cliente> save(@RequestBody Cliente cliente){
 		Cliente c = clienteService.save(cliente);
-		return new ResponseEntity<>(c, HttpStatus.OK);
+		return new ResponseEntity<>(c, HttpStatus.CREATED);
 	}
 	
 	@PutMapping("cliente/{id}")

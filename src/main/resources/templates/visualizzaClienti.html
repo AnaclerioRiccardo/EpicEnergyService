@@ -52,13 +52,13 @@
 				<td th:text="${c.telefonoContatto}"></td>
 				<td th:text="${c.indirizzoSedeLegale.stampaIndirizzo()}"></td>
 				<td th:text="${c.indirizzoSedeOperativa.stampaIndirizzo()}"></td>
-				<td ><a th:href="@{/web/mostraFormAggiornaCliente/{id}(id=${c.id})}">Aggiorna</a></td>
-				<td><a th:href="@{/web/eliminaCliente/{id}(id=${c.id})}" onclick="return confirm('Sei sicuro di volerlo eliminare?')">Elimina</a></td>
+				<td ><a th:href="@{/web/mostraFormAggiornaCliente/{id}(id=${c.id})}" sec:authorize="hasRole('ROLE_ADMIN')" >Aggiorna</a></td>
+				<td><a th:href="@{/web/eliminaCliente/{id}(id=${c.id})}" sec:authorize="hasRole('ROLE_ADMIN')" onclick="return confirm('Sei sicuro di volerlo eliminare?')">Elimina</a></td>
 			</tr>
 		</div>
 		</tbody>
 	</table>
-	<a href="/web/mostraFormAggiungiCliente">Aggiungi cliente</a><br>
+	<a href="/web/mostraFormAggiungiCliente" sec:authorize="hasRole('ROLE_ADMIN')">Aggiungi cliente</a><br>
 	<a href="/web/mostraFormFiltriCliente">Filtri</a><br>
 	<fieldset>
 		<legend>Ordinamenti</legend>

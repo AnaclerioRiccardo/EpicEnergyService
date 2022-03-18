@@ -75,7 +75,7 @@ public class IndirizzoController {
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public ResponseEntity<Indirizzo> save(@RequestBody Indirizzo indirizzo){
 		Indirizzo ind = indirizzoService.save(indirizzo);
-		return new ResponseEntity<>(ind, HttpStatus.OK);
+		return new ResponseEntity<>(ind, HttpStatus.CREATED);
 	}
 	
 	@PutMapping("indirizzo/{id}")

@@ -123,7 +123,7 @@ class TestClienteController {
 		 MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/api/cliente")
 	    			.contentType(MediaType.APPLICATION_JSON)
 	    			.content(body))
-	    			.andExpect(status().isOk()).andReturn();
+	    			.andExpect(status().isCreated()).andReturn();
 	}
 	
 	@Test

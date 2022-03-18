@@ -69,7 +69,7 @@ class TestIndirizzoController {
 		MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/api/indirizzo")
     			.contentType(MediaType.APPLICATION_JSON)
     			.content(body))
-    			.andExpect(status().isOk()).andReturn();
+    			.andExpect(status().isCreated()).andReturn();
 	}
 	
 	@Test

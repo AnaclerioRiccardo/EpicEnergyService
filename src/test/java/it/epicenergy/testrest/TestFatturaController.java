@@ -108,7 +108,7 @@ class TestFatturaController {
 		 MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/api/fattura")
 	    			.contentType(MediaType.APPLICATION_JSON)
 	    			.content(body))
-	    			.andExpect(status().isOk()).andReturn();
+	    			.andExpect(status().isCreated()).andReturn();
 	}
 	
 	@Test

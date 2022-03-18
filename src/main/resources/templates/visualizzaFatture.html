@@ -35,13 +35,13 @@
 				<td th:text="${f.importo}"></td>
 				<td th:text="${f.stato}"></td>
 				<td th:text="${f.cliente.ragioneSociale}"></td>
-				<td ><a th:href="@{/web/mostraFormAggiornaFattura/{id}(id=${f.id})}">Aggiorna</a></td>
-				<td><a th:href="@{/web/eliminaFattura/{id}(id=${f.id})}" onclick="return confirm('Sei sicuro di volerla eliminare?')">Elimina</a></td>
+				<td ><a th:href="@{/web/mostraFormAggiornaFattura/{id}(id=${f.id})} sec:authorize="hasRole('ROLE_ADMIN')"">Aggiorna</a></td>
+				<td><a th:href="@{/web/eliminaFattura/{id}(id=${f.id})}" sec:authorize="hasRole('ROLE_ADMIN')" onclick="return confirm('Sei sicuro di volerla eliminare?')">Elimina</a></td>
 			</tr>
 		</div>
 		</tbody>
 	</table>
-	<a href="/web/mostraFormAggiungiFattura">Aggiungi fattura</a><br>
+	<a href="/web/mostraFormAggiungiFattura" sec:authorize="hasRole('ROLE_ADMIN')">Aggiungi fattura</a><br>
 	<a href="/web/mostraFormFiltriFattura">Filtri</a><br>
 	<br>
 	<a href="/web/homepage">Homepage</a>

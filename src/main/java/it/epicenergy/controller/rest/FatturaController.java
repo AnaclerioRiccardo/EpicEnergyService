@@ -136,10 +136,10 @@ public class FatturaController {
 	@Operation(summary = "Inserimento di una nuova fattura", description = "Il cliente prende quello associato all'id "
 			+ "(deve esistere), l'anno non va inserito, prende quello associato alla data")
 	@ApiResponse(responseCode = "200", description = "Fattura inserita")
-	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_USER')")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public ResponseEntity<Fattura> save(@RequestBody Fattura fattura){
 		Fattura f = fatturaService.save(fattura);
-		return new ResponseEntity<>(f, HttpStatus.OK);
+		return new ResponseEntity<>(f, HttpStatus.CREATED);
 	}
 	
 	@PutMapping("fattura/{id}")

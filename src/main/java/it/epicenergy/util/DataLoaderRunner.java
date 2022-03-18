@@ -55,6 +55,7 @@ public class DataLoaderRunner implements CommandLineRunner {
 		initFatture();
 	}
 	
+	//Aggiungo sia le provincie che i comuni
 	private void initComune() throws Exception {
 		try (CSVReader csvReader = new CSVReader(new FileReader("comuni-italiani.csv"));) {
 		    String[] values = null;
@@ -78,6 +79,7 @@ public class DataLoaderRunner implements CommandLineRunner {
 		    }
 		}
 	}
+	
 	
 	private void initProvince() throws Exception {
 		try (CSVReader csvReader = new CSVReader(new FileReader("province-italiane.csv"));) {
