@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" th:href="@{/css/stile.css}"/>
+<meta charset="ISO-8859-1">
+<title>Elenco Clienti</title>
+</head>
+<body>
+	<header>
+		<h1>Epic Energy Services</h1>
+		<h3>Elenco Clienti</h3>
+		<h4>Calcolato fatturato annuale per anno: <span th:text="${anno}"></span></h4>
+		<div class="loggato">
+			<span sec:authentication="name">Username</span> 
+		</div>
+	</header>
+	
+	<table>
+		<thead>
+			<tr>
+				<th>Ragione Sociale</th>
+				<th>Tipo</th>
+				<th>Partita Iva</th>
+				<th>Email</th>
+				<th>Data Inserimento</th>
+				<th>Data Ultimo Contatto</th>
+				<th>Fatturato Annuale</th>
+				<th>Pec</th>
+				<th>Telefono</th>
+				<th>Nome Contatto</th>
+				<th>Cognome Contatto</th>
+				<th>Telefono Contatto</th>
+				<th>Indirizzo Sede Legale</th>
+				<th>Indirizzo Sede Operativa</th>
+			</tr>
+		</thead>
+		<tbody>
+		<div th:each="c: ${clienti}">	
+			<tr>
+				<td th:text="${c.ragioneSociale}"></td>
+				<td th:text="${c.tipo}"></td>
+				<td th:text="${c.partitaIva}"></td>
+				<td th:text="${c.email}"></td>
+				<td th:text="${c.dataInserimento}"></td>
+				<td th:text="${c.dataUltimoContatto}"></td>
+				<td th:text="${c.calcolaFatturatoAnnuale(anno)}"></td>
+				<td th:text="${c.pec}"></td>
+				<td th:text="${c.telefono}"></td>
+				<td th:text="${c.nomeContatto}"></td>
+				<td th:text="${c.cognomeContatto}"></td>
+				<td th:text="${c.telefonoContatto}"></td>
+				<td th:text="${c.indirizzoSedeLegale.stampaIndirizzo()}"></td>
+				<td th:text="${c.indirizzoSedeOperativa.stampaIndirizzo()}"></td>
+			</tr>
+		</div>
+		</tbody>
+	</table>
+	
+	<br>
+	<a href="/web/homepage">Homepage</a>
+		
+	<footer>
+		<p>Powered by Anaclerio Riccardo &copy; 2022</p>
+	</footer>
+
+</body>
+</html>

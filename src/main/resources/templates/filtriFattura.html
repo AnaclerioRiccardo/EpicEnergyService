@@ -45,7 +45,7 @@
 		<fieldset>
 			<legend>Filtro per range di importi</legend>
 			<form action="#" th:action="@{/web/filtroFatturaImporto}" method="POST" >
-				<span>Importi         </span><input type="text" th:name="val1"><span>  </span><input type="text" th:name="val2"><br>
+				<span>Importi         </span><input type="number" step="0.01" th:name="val1"><span>  </span><input type="number" step="0.01" th:name="val2"><br>
 				<p><input type="submit" value="cerca" /> <input type="reset" value="reset"></p>
 			</form>
 		</fieldset>

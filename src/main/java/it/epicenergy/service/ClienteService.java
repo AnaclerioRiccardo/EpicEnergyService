@@ -210,6 +210,7 @@ public class ClienteService {
 	}
 	
 	//controlla che l'email sia valida(ad es: sia presente la @)
+	//regex = regular expression
 	private boolean isEmailValid(String email) {
 		String regex = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
 		Pattern pattern = Pattern.compile(regex);

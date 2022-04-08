@@ -35,7 +35,7 @@
 				<td th:text="${f.importo}"></td>
 				<td th:text="${f.stato}"></td>
 				<td th:text="${f.cliente.ragioneSociale}"></td>
-				<td ><a th:href="@{/web/mostraFormAggiornaFattura/{id}(id=${f.id})} sec:authorize="hasRole('ROLE_ADMIN')"">Aggiorna</a></td>
+				<td ><a th:href="@{/web/mostraFormAggiornaFattura/{id}(id=${f.id})}" sec:authorize="hasRole('ROLE_ADMIN')">Aggiorna</a></td>
 				<td><a th:href="@{/web/eliminaFattura/{id}(id=${f.id})}" sec:authorize="hasRole('ROLE_ADMIN')" onclick="return confirm('Sei sicuro di volerla eliminare?')">Elimina</a></td>
 			</tr>
 		</div>

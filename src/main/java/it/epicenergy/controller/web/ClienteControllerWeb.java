@@ -237,5 +237,14 @@ public class ClienteControllerWeb {
 		Page<Cliente> clienti = clienteService.findByRagioneSocialeLike(ragioneSociale, pageable);
 		return new ModelAndView("visualizzaClienti", "clienti", clienti);
 	}
+	
+	@PostMapping("/filtroCalcolaFatturatoAnno")
+	public ModelAndView filtroFatturatoAnno(@RequestParam(value = "anno") Integer anno, Pageable pageable) {
+		ModelAndView viewClienti = new ModelAndView("visualizzaClientiFatturatoAnno");
+		Page<Cliente> clienti = clienteService.findAll(pageable);
+		viewClienti.addObject("clienti", clienti);
+		viewClienti.addObject("anno", anno);
+		return viewClienti;
+	}
 
 }

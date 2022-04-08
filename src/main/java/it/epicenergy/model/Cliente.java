@@ -79,6 +79,20 @@ public class Cliente {
 		return fatturatoAnnuale;
 	}
 	
+	//Ritorna il fatturato annuale dell'anno passato come parametro
+	public BigDecimal calcolaFatturatoAnnuale(Integer anno) {
+		BigDecimal totale = new BigDecimal("0");
+		if(fatture.isEmpty()) {
+			fatturatoAnnuale = totale;
+			return fatturatoAnnuale;
+		}
+		for(Fattura f: fatture) {
+			if(f.getAnno().equals(anno))
+				totale = totale.add(f.getImporto());
+		}
+		return totale;
+	}
+	
 	public void aggiungiFattura(Fattura fattura) {
 		fatture.add(fattura);
 	}

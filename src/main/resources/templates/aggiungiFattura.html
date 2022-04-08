@@ -17,7 +17,7 @@
 		<table>
 			<tr><td>Numero: </td><td><input type="text" th:field="*{numero}" /></td></tr>
 			<tr><td>Data: </td><td><input type="date" th:field="*{data}" required="required"/></td></tr>
-			<tr><td>Importo: </td><td><input type="text" th:field="*{importo}" /></td></tr>
+			<tr><td>Importo: </td><td><input type="number" step="0.01" th:field="*{importo}" /></td></tr>
 			<tr><td>Stato: </td><td><input type="text" th:field="*{stato}" /></td></tr>
 			<tr><td>Cliente</td>
 				<td> <select th:field="*{cliente}">

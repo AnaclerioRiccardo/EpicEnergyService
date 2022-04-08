@@ -93,7 +93,6 @@ public class FatturaService {
 		fattura.setCliente(c);
 		fattura.setAnno(fattura.getData().getYear());
 		fatturaRepo.save(fattura);
-		//fatturaRepo.flush();
 		//aggiorno l'importo totale del cliente
 		if(fattura.getAnno()==LocalDate.now().getYear()) {
 			c.aggiungiFattura(fattura);

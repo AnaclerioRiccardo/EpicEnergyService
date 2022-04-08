@@ -17,7 +17,7 @@
 		<fieldset>
 			<legend>Filtro per range di fatturato annuale</legend>
 			<form action="#" th:action="@{/web/filtroFatturatoAnnuale}" method="POST" >
-				<span>Fatturato annuale      </span><input type="text" th:name="val1"><span>  </span><input type="text" th:name="val2"><br>
+				<span>Fatturato annuale      </span><input type="number" step="0.01" th:name="val1"><span>  </span><input type="text" th:name="val2"><br>
 				<p><input type="submit" value="cerca" /> <input type="reset" value="reset"></p>
 			</form>
 		</fieldset>
@@ -40,6 +40,14 @@
 			<form action="#" th:action="@{/web/filtroRagioneSociale}" method="POST" >
 				<span>Ragione Sociale        </span><input type="text" th:name="ragioneSociale"><br>
 				<p><input type="submit" value="cerca" /> <input type="reset" value="reset"></p>
+			</form>
+		</fieldset>
+		
+		<fieldset>
+			<legend>Calcola il fatturato annuale di un anno specifico</legend>
+			<form action="#" th:action="@{/web/filtroCalcolaFatturatoAnno}" method="POST" >
+				<span>Anno                   </span><input type="number" th:name="anno"><br>
+				<p><input type="submit" value="Calcola" /> <input type="reset" value="reset"></p>
 			</form>
 		</fieldset>
 	
