@@ -182,12 +182,14 @@ public class ClienteService {
 		//inizio a settare i campi
 		Cliente c = findById(id).get();
 		//setto i due indirizzi
+		//Sede Legale
 		Optional<Indirizzo> indirizzoLegale = indirizzoRepo.findById(cliente.getIndirizzoSedeLegale().getId());
 		if(indirizzoLegale.isPresent()) {
 			c.setIndirizzoSedeLegale(indirizzoLegale.get());
 		} else {
 			throw new EpicEnergyException("Indirizzo non presente");
 		}
+		//Sede Operativa
 		Optional<Indirizzo> indirizzoOperativo = indirizzoRepo.findById(cliente.getIndirizzoSedeOperativa().getId());
 		if(indirizzoOperativo.isPresent()) {
 			c.setIndirizzoSedeOperativa(indirizzoOperativo.get());
