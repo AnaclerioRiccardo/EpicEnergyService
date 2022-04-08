@@ -120,12 +120,14 @@ public class ClienteService {
 			throw new EpicEnergyException("Pec non valida");
 		}
 		//setto i due indirizzi
+		//Sede Legale
 		Optional<Indirizzo> indirizzoLegale = indirizzoRepo.findById(cliente.getIndirizzoSedeLegale().getId());
 		if(indirizzoLegale.isPresent()) {
 			cliente.setIndirizzoSedeLegale(indirizzoLegale.get());
 		} else {
 			throw new EpicEnergyException("Indirizzo non presente");
 		}
+		//Sede operativa
 		Optional<Indirizzo> indirizzoOperativo = indirizzoRepo.findById(cliente.getIndirizzoSedeOperativa().getId());
 		if(indirizzoOperativo.isPresent()) {
 			cliente.setIndirizzoSedeOperativa(indirizzoOperativo.get());
