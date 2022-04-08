@@ -196,6 +196,7 @@ public class ClienteService {
 		} else {
 			throw new EpicEnergyException("Indirizzo non presente");
 		}
+		//Setto i campi rimanenti
 		List<Fattura> fatture = fatturaRepo.findAllByClienteId(id);
 		c.setCognomeContatto(cliente.getCognomeContatto());
 		c.setDataInserimento(cliente.getDataInserimento());
